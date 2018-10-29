@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div id="demo">
+    xxx
+</div>
+
+<script>
+
+
+    //window.addEventListener("deviceorientation", function(event)
+    window.addEventListener("devicemotion", function(event)
+    {
+
+        //  m/s² / 1000 * (miliseconds - miliseconds)/1000 /3600 => km/h (if I didn't made a mistake)
+        //speedX += Math.round(event.gamma) / 1000 * ((currentTime - lastTimestamp)/1000)/3600;
+        //... same for Y and Z
+        //lastTimestamp = currentTime;
+
+        // var x = Math.round(event.gamma);
+        // var y = Math.round(event.beta);
+        // var z = Math.round(event.alpha);
+
+        //var result = (x * x + y * y + z * z) / (9 * 9);
+
+        /*var gX = x;
+        var gY = y;
+        var gZ = z;
+
+        //var gForce = Math.sqrt(gX * gX + gY * gY + gZ * gZ);
+        var gForce = Math.sqrt(x * x + y * y + z * z) / 9.8;*/
+
+        // var movementX = 0;
+        // if(event.gamma <-10 || event.gamma > 10) {
+        //     movementX = event.gamma / 45;
+        //     if(movementX > 1) movementX = 1;
+        //     if(movementX < -1) movementX = -1;
+        // }
+        // var speedX = 100 * movementX;
+
+        var x = Math.round(event.accelerationIncludingGravity.x);
+        var y = Math.round(event.accelerationIncludingGravity.y);
+        var z = Math.round(event.accelerationIncludingGravity.z);
+
+        var gForce = Math.round(Math.sqrt(x * x + y * y + z * z) / 9.8);
+
+
+        if (gForce < 5) {
+            return;
+        }
+
+
+
+        $('#demo').append(gForce +' <br>');
+
+
+        //document.getElementById("demo").appendChild = gForce + '<br>';
+        //document.getElementById("myList").appendChild(node);
+
+    }, true);
+</script>
+</body>
+</html>
